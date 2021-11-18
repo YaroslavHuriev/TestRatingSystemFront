@@ -13,7 +13,7 @@
 						<div v-for="item in results.feedback.criteria" :key="item.id">
 							<input type="hidden" v-bind:value="item.id" name="criterionId">
 							<input v-bind:id="'checkbox'+item.id" type="checkbox" v-bind:checked="item.isPassed">
-							<label v-bind:for="'checkbox'+item.id">{{item.title}}</label>
+							<label v-bind:for="'checkbox'+item.id">{{ item.title }}</label>
 						</div>
 					</form>
 				</div>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import api from "@/api";
 
 export default {
 	name: "submissionReview",
@@ -38,7 +38,7 @@ export default {
 	},
 	mounted() {
 		this.submissionId = this.$route.params.id
-		axios.get('https://localhost:44334/Submissions/' + this.submissionId)
+		api.get('/Submissions/' + this.submissionId, {requiresAuth: true})
 			.then(response => {
 				this.results = response.data;
 				this.criteria = response.data.criteria;

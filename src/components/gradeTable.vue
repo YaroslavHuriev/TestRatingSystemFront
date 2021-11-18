@@ -1,6 +1,7 @@
 <template lang="html">
 	<div>
-		<table id="app" class="table table-striped table-dark">
+		<h2>Results</h2>
+		<table id="table" style="color: #EFF8FD">
 			<thead>
 			<tr>
 				<th scope="col">Id</th>
@@ -25,7 +26,7 @@
 				<td>{{ item.phoneNumber }}</td>
 				<td>{{ item.email }}</td>
 				<td>
-					<a v-bind:href="item.gitHubURL">{{ item.gitHubURL }}</a>
+					<a v-bind:href="'https://'+item.gitHubURL">{{ item.gitHubURL }}</a>
 				</td>
 				<td>{{ item.state }}</td>
 				<td v-if="item.state==='New'"></td>
@@ -37,7 +38,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import api from "@/api";
 
 export default {
 	name: "gradeTable",
@@ -47,7 +48,7 @@ export default {
 		};
 	},
 	mounted() {
-		axios.get('https://localhost:44334/Submissions').then(response => {
+		api.get('/Submissions', {requiresAuth: true}).then(response => {
 			this.results = response.data
 		})
 	}
@@ -55,5 +56,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
