@@ -1,13 +1,11 @@
 <template lang="html">
 	<div>
+		<router-link to="/Tasks">Create new task</router-link>
 		<h2>Results</h2>
-		<table id="table" style="color: #EFF8FD">
+		<table id="table">
 			<thead>
 			<tr>
-				<th scope="col">Id</th>
-				<th scope="col">Name</th>
-				<th scope="col">Surname</th>
-				<th scope="col">Fathers Name</th>
+				<th scope="col">Full Name</th>
 				<th scope="col">Phone Number</th>
 				<th scope="col">Email</th>
 				<th scope="col">GitHub Repository</th>
@@ -17,12 +15,11 @@
 			</thead>
 			<tbody>
 			<tr v-for="item in results" :key="item.submissionId">
-				<th scope="row">
-					<router-link v-bind:to="'Submissions/'+item.submissionId">{{ item.submissionId }}</router-link>
-				</th>
-				<td>{{ item.name }}</td>
-				<td>{{ item.surname }}</td>
-				<td>{{ item.fathersName }}</td>
+				<td>
+					<router-link v-bind:to="'/Submissions/'+item.submissionId">
+						{{ item.name + ' ' + item.fathersName + ' ' + item.surname }}
+					</router-link>
+				</td>
 				<td>{{ item.phoneNumber }}</td>
 				<td>{{ item.email }}</td>
 				<td>
@@ -48,7 +45,7 @@ export default {
 		};
 	},
 	mounted() {
-		api.get('/Submissions', {requiresAuth: true}).then(response => {
+		api.get('SubmissionTable/Submissions', {requiresAuth: true}).then(response => {
 			this.results = response.data
 		})
 	}
@@ -56,4 +53,33 @@ export default {
 </script>
 
 <style scoped>
+table {
+	font-family: "Roboto", sans-serif;
+	font-size: 12px;
+	color: #EFF8FD;
+	border-spacing: 0;
+	border-color: #EFF8FD;
+	text-align: center;
+	text-decoration: none;
+}
+
+th {
+	padding: 20px 30px;
+}
+
+th, td {
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #EFF8FD;
+	color:#EFF8FD;
+}
+
+td {
+	padding: 20px 30px;
+}
+
+#table{
+	background: #395A71;
+	text-decoration: none;
+}
 </style>

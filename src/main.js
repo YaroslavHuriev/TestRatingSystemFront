@@ -7,6 +7,7 @@ import submissionReview from "@/components/submissionReview";
 import loginForm from "@/components/loginForm";
 import './main.css'
 import api from './api'
+import taskCreation from "@/components/taskCreation";
 
 Vue.prototype.$http = api;
 api.defaults.timeout = 10000;
@@ -17,8 +18,9 @@ const routes = [
 	{path: '/'},
 	{path: '/Submissions', component: gradeTable, meta: {requiresAuth: true}},
 	{path: '/Submissions/:id', component: submissionReview, meta: {requiresAuth: true}},
-	{path: '/Submission/Add', component: submissionForm},
-	{path: '/Login', component: loginForm}
+	{path: '/Submission/Add/:id', component: submissionForm},
+	{path: '/Login', component: loginForm},
+	{path: '/Tasks', component: taskCreation},
 ]
 const router = new VueRouter({
 	routes

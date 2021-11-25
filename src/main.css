@@ -6,8 +6,9 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: 'Gemunu Libre', sans-serif;
-	color: #DBEFF8;
 	font-size: 12px;
+	color: #EFF8FD;
+	background-color: #395A71;
 }
 
 * {
@@ -30,6 +31,14 @@ h2 {
 
 }
 
+h3 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	margin-bottom: 45px;
+
+}
+
+
 p {
 	font-family: 'Roboto', sans-serif;
 	font-size: 25px;
@@ -50,13 +59,25 @@ p {
 	-webkit-background-size: cover;
 	-o-background-size: cover; 
 	background-size: cover;
-	padding-top: 206px; 
-	color: #fff;
+	/*padding-top: 206px; */
+	color: #EFF8FD;
 	padding-bottom: 322px;
 }
 
 router-link {
-	color: #DBEFF8;
+	color: #EFF8FD;
+}
+
+router-link:visited {
+	color: #EFF8FD;
+}
+
+a {
+	color: #EFF8FD;
+}
+
+a:visited {
+	color: #EFF8FD;
 }
 
 .btn {
@@ -67,7 +88,7 @@ router-link {
 	text-align: center;
 	letter-spacing: 0.1em; 
 	padding: 17px 47px;
-	border: 2px solid #2482BF;
+	border: 2px solid #395A71;
 	transition: all 0.5s ease;
 	border-radius: 10px;
 	text-decoration: none;
@@ -75,94 +96,48 @@ router-link {
 
 .btn:hover {
 	background: #2482BF;
-    color: #DBEFF8;
+    color: #395A71;
+    text-decoration: none;
 }
 
-#login {
-	padding: 24px 106px 24px 106px; 
-	margin-right: 70px;
-}
 
-#sow {
-	padding: 24px 54px 24px 54px; 
-}
 
-#table {
-	font-family: "Roboto", sans-serif;
-	font-size: 12px;
-	font-color: #DBEFF8;
-	border-radius: 20px;
-	border-spacing: 0;
-	border-color: #DBEFF8;
-	text-align: center;
-}
 
-th {
-	padding: 20px 30px;
-}
-
-th, td {
-	border-style: solid;
-	border-width: 1px 1px 1px 1px;
-	border-color: #DBEFF8;
-}
-
-td {
-	padding: 20px 30px;
-}
-
-#table{
-	background: #51C9DA;
-	/*opacity: 0.5;*/
-	-webkit-backdrop-filter: blur(12px);
-	backdrop-filter: blur(12px);
-}
-
-.form {
-   position: relative;
-   height: 620px;
-   max-width: 820px;
-   margin: 50px auto 0;
-   background: white;
-   border-radius: 52px;
-   background: #51C9DA;
-   opacity: 0.2;
-   -webkit-backdrop-filter: blur(12px);
-   backdrop-filter: blur(12px);
-}
-
-.form-inner {
-   padding: 35px 100px 35px 100px;
-}
-
-.form-inner input{
-   display: block;
-   width: 100%;
-   padding: 0;
-   margin-bottom: 10px;
-   line-height: 65px;
-   border-width: 1px 0 1px 0;
-   font-family: 'Roboto', sans-serif;
-   font-size: 15px;
-}
 
 button{
-    margin-top: 50px;
     width: 255px;
 	height: 70px;
-	display: inline;;
+	display: inline;
 	font-size: 20px;
 	text-align: center;
 	letter-spacing: 0.1em; 
 	padding: 17px 47px;
-	border: 2px solid #2482BF;
+	border: 2px solid #395A71;
 	transition: all 0.5s ease;
 	border-radius: 10px;
 	text-decoration: none;
+	justify-content: center;
+    margin: 50px 0 auto 0;
 }
 
 button:hover {
 	background: #2482BF;
-    color: #DBEFF8;
+    color: #395A71;
+    text-decoration: none;
+    margin: 0 auto; 
 }
 
+button:visited {
+	background: #2482BF;
+    color: #395A71;
+    text-decoration: none;
+    margin: 0 auto; 
+}
+#login {
+	padding: 20px 70px 20px 70px;
+	margin-right: 70px;
+	text-decoration: none;
+}
+#tr{
+	padding: 20px 32px 20px 32px;
+}
