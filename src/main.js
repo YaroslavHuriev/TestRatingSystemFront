@@ -8,6 +8,7 @@ import loginForm from "@/components/loginForm";
 import './main.css'
 import api from './api'
 import taskCreation from "@/components/taskCreation";
+import taskChoice from "@/components/taskChoice";
 
 Vue.prototype.$http = api;
 api.defaults.timeout = 10000;
@@ -18,7 +19,8 @@ const routes = [
 	{path: '/'},
 	{path: '/Submissions', component: gradeTable, meta: {requiresAuth: true}},
 	{path: '/Submissions/:id', component: submissionReview, meta: {requiresAuth: true}},
-	{path: '/Submission/Add/:id', component: submissionForm},
+	{path: '/Submission/Add/:taskId', component: submissionForm},
+	{path: '/Task/Choose', component: taskChoice},
 	{path: '/Login', component: loginForm},
 	{path: '/Tasks', component: taskCreation},
 ]

@@ -8,7 +8,7 @@
 				<p v-if="this.$router.currentRoute.path==='/'">A portal that simplifies the creation, distribution, and evaluation of a technical requirement.
 				</p>
 				<router-link id = "login" class="btn" v-if="this.$router.currentRoute.path==='/'" to="/Submissions">Login</router-link>
-				<router-link id = "tr" class="btn" v-if="this.$router.currentRoute.path==='/'" to="/Submission/Add">Submit the job
+				<router-link id = "tr" class="btn" v-if="this.$router.currentRoute.path==='/'" to="/Task/Choose">Submit the job
 				</router-link>
 				<button class="log-out" v-on:click="logOut" type="button" v-if="this.$router.currentRoute.path==='/' && this.token">Log Out</button>
 			</div>

@@ -65,10 +65,10 @@ export default {
 		};
 	},
 	mounted() {
-		api.get('/SubmissionAdding/Task/' + this.$route.params.id)
+		api.get('/SubmissionAdding/Task/' + this.$route.params.taskId)
 			.then((response) => {
 				this.task = response.data;
-			}).catch(err=>console.log(err));
+			}).catch(err => console.log(err));
 	},
 	methods: {
 		submitForm: function () {
@@ -165,7 +165,8 @@ template {
 	display: flex;
 	justify-content: center;
 }
-.container{
+
+.container {
 	padding-top: 50px;
 }
 </style>
