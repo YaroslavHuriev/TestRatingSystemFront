@@ -7,12 +7,14 @@
 				</h1>
 				<p v-if="this.$router.currentRoute.path==='/'">A portal that simplifies the creation, distribution, and evaluation of a technical requirement.
 				</p>
-				<router-link id = "login" class="btn" v-if="this.$router.currentRoute.path==='/'" to="/Submissions">Login</router-link>
+				<router-link id = "login" class="btn" v-if="this.$router.currentRoute.path==='/'" to="/Submissions">Submission Rating</router-link>
 				<router-link id = "tr" class="btn" v-if="this.$router.currentRoute.path==='/'" to="/Task/Choose">Submit the job
 				</router-link>
 				<button class="log-out" v-on:click="logOut" type="button" v-if="this.$router.currentRoute.path==='/' && this.token">Log Out</button>
 			</div>
 		</div>
+		<router-link v-if="this.$router.currentRoute.path!=='/'" to="/">Main</router-link>
+		<router-link v-if="this.$router.currentRoute.path!=='/' && this.$router.currentRoute.path!=='/Submissions'" to="/Submissions">Submission Rating</router-link>
 		<div>
 			<router-view></router-view>
 		</div>

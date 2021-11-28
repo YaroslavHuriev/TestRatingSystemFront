@@ -16,18 +16,18 @@
 			<tbody>
 			<tr v-for="item in results" :key="item.submissionId">
 				<td>
-					<router-link v-bind:to="'/Submissions/'+item.submissionId">
+					<router-link class="routerLink" v-bind:to="'/Submissions/'+item.submissionId">
 						{{ item.name + ' ' + item.fathersName + ' ' + item.surname }}
 					</router-link>
 				</td>
 				<td>{{ item.phoneNumber }}</td>
 				<td>{{ item.email }}</td>
 				<td>
-					<a v-bind:href="'https://'+item.gitHubURL">{{ item.gitHubURL }}</a>
+					<a class="routerLink" v-bind:href="'https://'+item.gitHubURL">{{ item.gitHubURL }}</a>
 				</td>
 				<td>{{ item.state }}</td>
-				<td v-if="item.state==='New'"></td>
-				<td v-else>{{ item.grade }}</td>
+				<td v-if="item.state==='Accepted'">{{ item.grade }}</td>
+				<td v-else></td>
 			</tr>
 			</tbody>
 		</table>
@@ -72,6 +72,9 @@ th, td {
 	border-width: 1px 1px 1px 1px;
 	border-color: #EFF8FD;
 	color:#EFF8FD;
+}
+.routerLink{
+	text-decoration: none;
 }
 
 td {

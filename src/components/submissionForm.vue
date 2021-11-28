@@ -6,26 +6,32 @@
 				<p>{{ task.description }}</p>
 				<form class="form" v-on:submit.prevent="submitForm">
 					<div class="form_group">
+						<p class="error" v-for="error in errors.Surname" v-bind:key="error">{{error}}</p>
 						<input v-model="postBody.surname" class="form__control" type="text" placeholder="Surname">
 					</div>
 
 					<div class="form_group">
+						<p class="error" v-for="error in errors.Name" v-bind:key="error">{{error}}</p>
 						<input v-model="postBody.name" class="form__control" type="text" placeholder="Name">
 					</div>
 
 					<div class="form_group">
+						<p class="error" v-for="error in errors.FathersName" v-bind:key="error">{{error}}</p>
 						<input v-model="postBody.fathersName" class="form__control" type="text" placeholder="Father`s name">
 					</div>
 
 					<div class="form_group">
+						<p class="error" v-for="error in errors.PhoneNumber" v-bind:key="error">{{error}}</p>
 						<input v-model="postBody.phoneNumber" class="form__control" type="text" placeholder="Phone number">
 					</div>
 
 					<div class="form_group">
+						<p class="error" v-for="error in errors.Email" v-bind:key="error">{{error}}</p>
 						<input v-model="postBody.email" class="form__control" type="text" placeholder="Email">
 					</div>
 
 					<div class="form_group">
+						<p class="error" v-for="error in errors.GitHubURL" v-bind:key="error">{{error}}</p>
 						<input v-model="postBody.gitHubURL" class="form__control" type="text" placeholder="GitHub URL">
 					</div>
 
@@ -56,12 +62,14 @@ export default {
 				phoneNumber: '',
 				email: '',
 				gitHubURL: '',
-				notes: ''
+				notes: '',
+				taskId:this.$route.params.taskId
 			},
 			task: {
 				title: '',
 				description: ''
-			}
+			},
+			errors:{}
 		};
 	},
 	mounted() {
@@ -73,11 +81,12 @@ export default {
 	methods: {
 		submitForm: function () {
 			api.post('/Submissions', this.postBody)
-				.then(() => {
+				.then((response) => {
 					console.log(this.postBody);
-					this.$router.push('/');
+					this.$router.push('/Info/'+ response.data);
 				})
-				.catch(() => {// catch error});
+				.catch((error) => {
+					this.errors = error.data.errors;
 				})
 		}
 	}
@@ -96,10 +105,14 @@ body {
 	background-image: url(../img/header-bg.jpg);
 }
 
+.error{
+	color: red;
+}
+
 input {
 	height: 45px;
 	width: 100%;
-	color: #DBEFF8;
+	color: #000;
 	font-size: 15px;
 	line-height: 16px;
 	border-bottom: 2px solid #DBEFF8;

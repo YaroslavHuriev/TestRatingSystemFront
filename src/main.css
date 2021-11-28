@@ -55,13 +55,14 @@ p {
 	background: url(header-bg.jpg) no-repeat center center fixed;
 	min-height: 100%;
 	min-width: 100%;
+	padding-left: 50px;
 	-moz-background-size: cover; 
 	-webkit-background-size: cover;
 	-o-background-size: cover; 
 	background-size: cover;
 	/*padding-top: 206px; */
 	color: #EFF8FD;
-	padding-bottom: 322px;
+	padding-bottom: 600px;
 }
 
 router-link {
@@ -113,11 +114,11 @@ button{
 	letter-spacing: 0.1em; 
 	padding: 17px 47px;
 	border: 2px solid #395A71;
-	transition: all 0.5s ease;
+	/*transition: all 0.5s ease;*/
 	border-radius: 10px;
 	text-decoration: none;
 	justify-content: center;
-    margin: 50px 0 auto 0;
+    /*margin: 50px 0 auto 0;*/
 }
 
 button:hover {
