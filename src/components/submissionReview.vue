@@ -12,15 +12,17 @@
 		<div class="container">
 			<div class="criteria_items">
 				<p>{{ results.task.description }}</p>
+				<p v-if="results.state==='Accepted'">{{ results.grade }} </p>
 				<div class="criteria_1">
-					<h2>Code structure</h2>
-					<p v-if="results.state==='Resolved'">{{ results.grade }} </p>
 					<form v-on:submit.prevent="feedbackPatch">
 						<input type="hidden" v-bind:value="results.id" name="submissionId">
-						<div v-for="item in results.criteria" :key="item.submissionCriterionId">
-							<input type="hidden" name="criterionId" v-model="item.submissionCriterionId">
-							<input class="custom-checkbox" type="checkbox" v-model="item.isCompleted">
-							<label v-bind:for="'checkbox'+item.submissionCriterionId">{{ item.title }}</label>
+						<div v-for="group in criteriaGroups" v-bind:key="group">
+							<h2>{{ group }}</h2>
+							<div v-for="criterion in certainGroup(group)" v-bind:key="criterion.submisionCriterionId">
+								<input type="hidden" name="criterionId" v-model="criterion.submissionCriterionId">
+								<input class="custom-checkbox" type="checkbox" v-model="criterion.isCompleted">
+								<label v-bind:for="'checkbox'+criterion.submissionCriterionId">{{ criterion.title }}</label>
+							</div>
 						</div>
 						<button>Save</button>
 					</form>
@@ -49,6 +51,7 @@ export default {
 				criteria: [],
 				state: ''
 			},
+			criteriaGroups: [],
 			logo: avatar
 		}
 	},
@@ -57,6 +60,11 @@ export default {
 		api.get('/Scoring/Submissions/' + this.submissionId, {requiresAuth: true})
 			.then(response => {
 				this.results = response.data;
+				for (let i = 0; i < this.results.criteria.length; i++) {
+					if (!this.criteriaGroups.some(group => group === this.results.criteria[i].group)) {
+						this.criteriaGroups.push(this.results.criteria[i].group);
+					}
+				}
 			}).catch(err => console.log(err));
 	},
 	methods: {
@@ -70,6 +78,9 @@ export default {
 			this.patchBody.state = 'Accepted';
 			api.patch('/Scoring/Submissions/' + this.submissionId, this.patchBody, {requiresAuth: true})
 				.then(() => this.$router.push('/Submissions'));
+		},
+		certainGroup: function (group) {
+			return this.results.criteria.filter(criterion => criterion.group === group);
 		}
 	}
 }
@@ -92,7 +103,7 @@ export default {
 	display: table;
 }
 
-a{
+a {
 	text-decoration: none;
 }
 

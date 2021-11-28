@@ -10,6 +10,7 @@ import api from './api'
 import taskCreation from "@/components/taskCreation";
 import taskChoice from "@/components/taskChoice";
 import resultInfo from "@/components/resultInfo";
+import result from "@/components/result";
 
 Vue.prototype.$http = api;
 api.defaults.timeout = 10000;
@@ -22,6 +23,7 @@ const routes = [
 	{path: '/Submissions/:id', component: submissionReview, meta: {requiresAuth: true}},
 	{path: '/Submission/Add/:taskId', component: submissionForm},
 	{path: '/Task/Choose', component: taskChoice},
+	{path: '/Submission/Results/:guid', component: result},
 	{path: '/Info/:guid', component: resultInfo},
 	{path: '/Login', component: loginForm},
 	{path: '/Tasks', component: taskCreation},
