@@ -2,7 +2,12 @@
 	<div>
 		<router-link to="/Tasks">Create new task</router-link>
 		<h2>Results</h2>
-		<table id="table">
+		<select v-model="selectedTaskId">
+			<option v-for="task in results" :key="task.id" v-bind:value="task.id">
+				{{ task.title }}
+			</option>
+		</select>
+		<table id="table" v-if="showTable">
 			<thead>
 			<tr>
 				<th scope="col">Full Name</th>
@@ -14,14 +19,14 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr v-for="item in results" :key="item.submissionId">
+			<tr v-for="item in table" :key="item.submissionId">
 				<td>
 					<router-link class="routerLink" v-bind:to="'/Submissions/'+item.submissionId">
 						{{ item.name + ' ' + item.fathersName + ' ' + item.surname }}
 					</router-link>
 				</td>
-				<td>{{ item.phoneNumber }}</td>
-				<td>{{ item.email }}</td>
+				<td><a :href="'tel:'+item.phoneNumber">{{ item.phoneNumber }}</a></td>
+				<td><a :href="'mailto:'+item.email">{{ item.email }}</a></td>
 				<td>
 					<a class="routerLink" v-bind:href="'https://'+item.gitHubURL">{{ item.gitHubURL }}</a>
 				</td>
@@ -41,13 +46,24 @@ export default {
 	name: "gradeTable",
 	data() {
 		return {
-			results: []
+			results: [],
+			table: [],
+			selectedTaskId: null,
+			showTable: false
 		};
 	},
 	mounted() {
-		api.get('SubmissionTable/Submissions', {requiresAuth: true}).then(response => {
+		api.get('SubmissionTable/Tasks', {requiresAuth: true}).then(response => {
 			this.results = response.data
 		})
+	},
+	watch: {
+		selectedTaskId: function (newId) {
+			api.get('SubmissionTable/Submissions/' + newId, {requiresAuth: true}).then(response => {
+				this.table = response.data;
+				this.showTable = true;
+			}).catch(error => console.log(error));
+		}
 	}
 };
 </script>
@@ -71,9 +87,14 @@ th, td {
 	border-style: solid;
 	border-width: 1px 1px 1px 1px;
 	border-color: #EFF8FD;
-	color:#EFF8FD;
+	color: #EFF8FD;
 }
-.routerLink{
+
+.routerLink {
+	text-decoration: none;
+}
+
+a {
 	text-decoration: none;
 }
 
@@ -81,7 +102,7 @@ td {
 	padding: 20px 30px;
 }
 
-#table{
+#table {
 	background: #395A71;
 	text-decoration: none;
 }

@@ -1,12 +1,12 @@
 <template>
 	<div id="app">
-		<h2>{{'Task evaluation:'+results.task.title}}</h2>
+		<h2>{{ 'Task evaluation:' + results.task.title }}</h2>
 		<div class="card">
 			<img height="80" width="80" alt="avatar" v-bind:src="logo">
 			<div class="content-wrap">
 				<p class="name">{{ results.name + ' ' + results.surname }}</p>
-				<p class="email">{{ results.email }}</p>
-				<p class="url">{{ results.gitHubURL }}</p>
+				<p><a :href="'mailto:'+results.email" class="email">{{ results.email }}</a></p>
+				<p><a class="url" v-bind:href="'https://'+results.gitHubURL">{{ results.gitHubURL }}</a></p>
 			</div>
 		</div>
 		<div class="container">
@@ -92,6 +92,10 @@ export default {
 	display: table;
 }
 
+a{
+	text-decoration: none;
+}
+
 .card img {
 	float: left;
 	margin-right: 20px;
@@ -120,60 +124,4 @@ p {
 .name {
 	font-size: 15px;
 }
-
-
-/*стили для чекбоксов*/
-
-/*.custom-checkbox {*/
-/*	position: absolute;*/
-/*	z-index: -1;*/
-/*	opacity: 0;*/
-/*}*/
-
-/*.custom-checkbox:not(:disabled):not(:checked)+label:hover::before {*/
-/*	border-color: #395A71;*/
-/*}*/
-
-/*.custom-checkbox:not(:disabled):active+label::before {*/
-/*	background-color: #395A71;*/
-/*	border-color: #395A71;*/
-/*}*/
-
-/*.custom-checkbox:focus+label::before {*/
-/*	box-shadow: 0 0 0 0.2rem #92A1AB;*/
-/*}*/
-/*.custom-checkbox:focus:not(:checked)+label::before {*/
-/*	border-color: #395A71;*/
-/*}*/
-
-/*.custom-checkbox+label {*/
-/*	display: inline-flex;*/
-/*	align-items: center;*/
-/*	!*user-select: none;*!*/
-/*}*/
-
-/*.custom-checkbox+label::before {*/
-/*	content: '';*/
-/*	display: inline-block;*/
-/*	width: 1em;*/
-/*	height: 1em;*/
-/*	flex-shrink: 0;*/
-/*	flex-grow: 0;*/
-/*	border: 1px solid #395A71;*/
-/*	border-radius: 0.25em;*/
-/*	margin-right: 0.5em;*/
-/*	background-repeat: no-repeat;*/
-/*	background-position: center center;*/
-/*	background-size: 50% 50%;*/
-/*}*/
-
-/*.custom-checkbox:checked+label::before {*/
-/*	border-color: #395A71;*/
-/*	background-color: #395A71;*/
-/*	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");*/
-/*}*/
-
-/*.custom-checkbox:disabled+label::before {*/
-/*	background-color: #395A71;*/
-/*}*/
 </style>
